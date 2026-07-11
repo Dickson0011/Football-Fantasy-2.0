@@ -1,0 +1,438 @@
+/* ============================================================
+   FOOTBALL FANTASY — GLOBAL RESET & BASE STYLES
+   Sports Broadcast Tech · Dark Premium · v1.0
+   ============================================================ */
+
+@import './variables.css';
+
+/* ============================================================
+   RESET — Modern CSS Reset (aggressive, minimal)
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--color-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   TYPOGRAPHY BASE
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
+h5 { font-size: var(--text-xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 72ch;
+}
+
+small {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+strong {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   DISPLAY TYPOGRAPHY — for hero headers and match scores
+   ============================================================ */
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.display-xl {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.display-lg {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   LAYOUT CONTAINERS
+   ============================================================ */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-6);
+  padding-top: calc(var(--navbar-height) + var(--space-6));
+}
+
+.content-container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ============================================================
+   PANELS — Stadium Steel containers
+   ============================================================ */
+.panel {
+  background: var(--color-secondary);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.panel-elevated {
+  background: var(--color-tertiary);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.panel-interactive {
+  background: var(--color-secondary);
+  border: var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+}
+
+.panel-interactive:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.panel-interactive:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* ============================================================
+   FORM INPUTS — Dark, sharp, glowing on focus
+   ============================================================ */
+input, textarea, select {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: var(--color-surface);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--color-border-focus);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-dim);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   BUTTONS — Aggressive, sharp-edge, neon glow
+   ============================================================ */
+button {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-6);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--text-inverse);
+  font-weight: var(--weight-bold);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+  background: var(--color-accent-dim);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--color-border-focus);
+  background: var(--color-surface);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--text-primary);
+}
+
+.btn-danger:hover {
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+}
+
+.btn-sm {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-4);
+  min-height: 36px;
+}
+
+.btn-lg {
+  font-size: var(--text-base);
+  padding: var(--space-4) var(--space-8);
+  min-height: 52px;
+}
+
+/* ============================================================
+   BADGES — Stat labels, rarity tags
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.badge-common    { color: var(--rarity-common);    border-color: var(--rarity-common);    background: rgba(139, 149, 165, 0.1); }
+.badge-rare      { color: var(--rarity-rare);      border-color: var(--rarity-rare);      background: rgba(59, 130, 246, 0.1); }
+.badge-epic      { color: var(--rarity-epic);      border-color: var(--rarity-epic);      background: rgba(139, 92, 246, 0.1); }
+.badge-legendary { color: var(--rarity-legendary); border-color: var(--rarity-legendary); background: rgba(245, 158, 11, 0.1); }
+.badge-mythic    { color: var(--rarity-mythic);    border-color: var(--rarity-mythic);    background: rgba(255, 26, 159, 0.1); }
+
+/* ============================================================
+   DIVIDERS
+   ============================================================ */
+hr,
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-6) 0;
+}
+
+/* ============================================================
+   SCROLLBAR — Custom dark scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-focus);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background: var(--color-accent-dim);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   FOCUS VISIBLE — Global keyboard focus ring
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.text-accent    { color: var(--color-accent); }
+.text-success   { color: var(--color-success); }
+.text-danger    { color: var(--color-danger); }
+.text-warning   { color: var(--color-warning); }
+.text-muted     { color: var(--text-secondary); }
+
+.bg-surface     { background: var(--color-surface); }
+.bg-panel       { background: var(--color-secondary); }
+
+.flex           { display: flex; }
+.flex-col       { flex-direction: column; }
+.flex-center    { display: flex; align-items: center; justify-content: center; }
+.flex-between   { display: flex; align-items: center; justify-content: space-between; }
+.gap-2          { gap: var(--space-2); }
+.gap-4          { gap: var(--space-4); }
+.gap-6          { gap: var(--space-6); }
+.gap-8          { gap: var(--space-8); }
+
+.grid           { display: grid; }
+.grid-2         { grid-template-columns: repeat(2, 1fr); }
+.grid-3         { grid-template-columns: repeat(3, 1fr); }
+.grid-4         { grid-template-columns: repeat(4, 1fr); }
+
+.w-full         { width: 100%; }
+.h-full         { height: 100%; }
+.relative       { position: relative; }
+.overflow-hidden { overflow: hidden; }
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--space-4);
+    padding-top: calc(var(--navbar-height) + var(--space-4));
+  }
+  
+  .grid-4,
+  .grid-3,
+  .grid-2 { grid-template-columns: 1fr; }
+  
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+}
+
+@media (max-width: 375px) {
+  html { font-size: 14px; }
+}

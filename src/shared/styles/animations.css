@@ -1,0 +1,137 @@
+/* ============================================================
+   FOOTBALL FANTASY — ANIMATION LIBRARY
+   Micro-interactions · Transitions · Keyframes
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Fade in from transparent */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Fade in sliding up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in sliding down */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle scale-in */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Neon pulse glow */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 8px var(--color-accent-glow); }
+  50%      { box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-dim); }
+}
+
+/* Energy bar shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Horizontal scan line (sports broadcast feel) */
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Spinner rotation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Number count-up ticker effect */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+.animate-fade-in       { animation: fadeIn var(--transition-smooth) ease forwards; }
+.animate-fade-in-up    { animation: fadeInUp var(--transition-smooth) ease forwards; }
+.animate-fade-in-down  { animation: fadeInDown var(--transition-smooth) ease forwards; }
+.animate-scale-in      { animation: scaleIn var(--transition-smooth) ease forwards; }
+.animate-slide-left    { animation: slideInLeft var(--transition-smooth) ease forwards; }
+.animate-slide-right   { animation: slideInRight var(--transition-smooth) ease forwards; }
+.animate-glow-pulse    { animation: glowPulse 2s ease-in-out infinite; }
+.animate-shimmer       { animation: shimmer 2s linear infinite; }
+.animate-spin          { animation: spin 1s linear infinite; }
+
+/* Stagger children animation delays */
+.stagger-children > *:nth-child(1)  { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2)  { animation-delay: 50ms; }
+.stagger-children > *:nth-child(3)  { animation-delay: 100ms; }
+.stagger-children > *:nth-child(4)  { animation-delay: 150ms; }
+.stagger-children > *:nth-child(5)  { animation-delay: 200ms; }
+.stagger-children > *:nth-child(6)  { animation-delay: 250ms; }
+.stagger-children > *:nth-child(7)  { animation-delay: 300ms; }
+.stagger-children > *:nth-child(8)  { animation-delay: 350ms; }
+.stagger-children > *:nth-child(9)  { animation-delay: 400ms; }
+.stagger-children > *:nth-child(10) { animation-delay: 450ms; }
+
+/* ============================================================
+   TRANSITION UTILITIES
+   ============================================================ */
+.transition-all        { transition: all var(--transition-fast); }
+.transition-colors     { transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast); }
+.transition-transform  { transition: transform var(--transition-fast); }
+.transition-opacity    { transition: opacity var(--transition-fast); }
+
+/* ============================================================
+   LOADING STATES
+   ============================================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-border) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-lg {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
