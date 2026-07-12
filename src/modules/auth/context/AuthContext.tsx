@@ -45,11 +45,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return unsubscribe;
   }, []);
 
-  const login = useCallback(async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string, rememberMe: boolean = false) => {
     setError(null);
     setLoading(true);
     try {
-      await loginUser(email, password);
+      await loginUser(email, password, rememberMe);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Login failed';
       setError(formatAuthError(message));

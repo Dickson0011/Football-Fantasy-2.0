@@ -34,7 +34,7 @@ export interface AuthContextValue {
   playerProfile: PlayerProfile | null;
   loading: boolean;
   error: string | null;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string, rememberMe?: boolean) => Promise<void>;
   register: (email: string, password: string, displayName: string) => Promise<void>;
   logout: () => Promise<void>;
   clearError: () => void;

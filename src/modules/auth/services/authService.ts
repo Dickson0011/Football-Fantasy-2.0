@@ -9,6 +9,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
   type User,
   type UserCredential,
 } from 'firebase/auth';
@@ -53,12 +56,17 @@ export async function registerUser(
 
 /**
  * Sign in an existing user with email and password.
- * Updates last login timestamp.
+ * Updates last login timestamp and sets persistence based on rememberMe checkbox.
  */
 export async function loginUser(
   email: string,
-  password: string
+  password: string,
+  rememberMe: boolean = false
 ): Promise<UserCredential> {
+  // Set Firebase Auth persistence level
+  const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
+  await setPersistence(auth, persistence);
+
   const credential = await signInWithEmailAndPassword(auth, email, password);
 
   // Update last login (fire-and-forget to avoid blocking UI)

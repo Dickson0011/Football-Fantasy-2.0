@@ -20,7 +20,7 @@ export function AuthPage() {
   const [displayName, setDisplayName] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [agreeRules, setAgreeRules] = useState(false);
-  
+
   // Password visibility states
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -49,7 +49,7 @@ export function AuthPage() {
 
     try {
       if (mode === 'login') {
-        await login(email, password);
+        await login(email, password, rememberMe);
       } else {
         await register(email, password, displayName || 'Manager');
       }
@@ -66,7 +66,7 @@ export function AuthPage() {
       <div className="auth-page__left">
         <img src={authBg} alt="Futuristic Football Stadium" className="auth-left-bg" />
         <div className="auth-left-overlay" />
-        
+
         {/* Brand Title Top Left */}
         <div className="auth-left-brand">
           FOOTBALL FANTASY
@@ -85,7 +85,7 @@ export function AuthPage() {
             )}
           </h2>
           <p className="hud-desc animate-fade-in-up">
-            {mode === 'login' 
+            {mode === 'login'
               ? 'Sync your squad across the grid and compete in high-stakes tactical stadium simulations.'
               : 'Experience the next evolution of tactical sports management. Machined precision, high-stakes competition, and legendary athletes.'}
           </p>
@@ -125,7 +125,7 @@ export function AuthPage() {
           </div>
 
           <form className="auth-right-form" onSubmit={handleSubmit} noValidate>
-            
+
             {/* Full Name / Manager Name (Register Mode Only) */}
             {mode === 'register' && (
               <div className="form-group animate-fade-in">
@@ -266,7 +266,7 @@ export function AuthPage() {
                     onChange={(e) => setRememberMe(e.target.checked)}
                   />
                   <span className="custom-box" />
-                  <span className="checkbox-text">Maintain persistent uplink</span>
+                  <span className="checkbox-text">Keep me logged in</span>
                 </label>
               ) : (
                 <label className="checkbox-label">
