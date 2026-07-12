@@ -23,17 +23,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // Listen for auth state changes
   useEffect(() => {
-    const unsubscribe = onAuthChange(async (firebaseUser) => {
+    const unsubscribe = onAuthChange((firebaseUser) => {
       setUser(firebaseUser);
 
       if (firebaseUser) {
-        try {
-          const profile = await getPlayerProfile(firebaseUser.uid);
-          setPlayerProfile(profile as PlayerProfile | null);
-        } catch {
-          console.error('Failed to load player profile');
-          setPlayerProfile(null);
-        }
+        getPlayerProfile(firebaseUser.uid)
+          .then((profile) => {
+            setPlayerProfile(profile as PlayerProfile | null);
+          })
+          .catch((err) => {
+            console.error('Failed to load player profile:', err);
+            setPlayerProfile(null);
+          });
       } else {
         setPlayerProfile(null);
       }

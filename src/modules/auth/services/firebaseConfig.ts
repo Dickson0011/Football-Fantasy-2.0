@@ -10,13 +10,13 @@ import { getFirestore } from 'firebase/firestore';
 // Firebase project configuration
 // Replace these values with your actual Firebase project credentials
 const firebaseConfig = {
-  apiKey: "AIzaSyCAbR5eFM1kgCNFr6ZU34ETGHV_f3Lj2Ts",
-  authDomain: "football-fantasy-7b4b0.firebaseapp.com",
-  projectId: "football-fantasy-7b4b0",
-  storageBucket: "football-fantasy-7b4b0.firebasestorage.app",
-  messagingSenderId: "1097715363541",
-  appId: "1:1097715363541:web:a73a61b8ebe897f5763c5c",
-  measurementId: "G-HC8QVHHF1S"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

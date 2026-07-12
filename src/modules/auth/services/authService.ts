@@ -30,8 +30,8 @@ export async function registerUser(
 ): Promise<UserCredential> {
   const credential = await createUserWithEmailAndPassword(auth, email, password);
 
-  // Create player profile in Firestore
-  await setDoc(doc(db, 'players', credential.user.uid), {
+  // Create player profile in Firestore (fire-and-forget to avoid blocking UI)
+  setDoc(doc(db, 'players', credential.user.uid), {
     uid: credential.user.uid,
     email: credential.user.email,
     displayName,
@@ -44,6 +44,8 @@ export async function registerUser(
     cardsOwned: [],
     matchesPlayed: 0,
     matchesWon: 0,
+  }).catch((err) => {
+    console.warn('Firestore profile creation delayed/failed:', err);
   });
 
   return credential;
@@ -59,12 +61,14 @@ export async function loginUser(
 ): Promise<UserCredential> {
   const credential = await signInWithEmailAndPassword(auth, email, password);
 
-  // Update last login
-  await setDoc(
+  // Update last login (fire-and-forget to avoid blocking UI)
+  setDoc(
     doc(db, 'players', credential.user.uid),
     { lastLogin: serverTimestamp() },
     { merge: true }
-  );
+  ).catch((err) => {
+    console.warn('Firestore lastLogin update delayed/failed:', err);
+  });
 
   return credential;
 }
