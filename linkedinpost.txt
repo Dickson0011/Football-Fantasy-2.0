@@ -1,6 +1,0 @@
-Most browser games today are built on WebGL, which has proven itself over 
-the years. For this project, I chose to explore WebGPU instead—not simply 
-because it's newer, but to investigate its potential for building the next 
-generation of browser games. My goal is to evaluate whether WebGPU can 
-deliver a more polished, animation-rich, and high-performance gaming 
-experience while remaining entirely web-based.
